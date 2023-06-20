@@ -613,8 +613,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 5
   _viewSpeed: 0.5
-  _lookUpMin: 60
-  _lookUpMax: -60
+  _lookUpMin: 0.5
+  _lookUpMax: -0.5
   _cameraTransform: {fileID: 1213346443}
 --- !u!114 &2111344073
 MonoBehaviour:

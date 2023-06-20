@@ -20,19 +20,23 @@ public class PickUpItems : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if (m_rigidbody)
             {
                 m_rigidbody.useGravity = true;
+                m_rigidbody.transform.parent = null;
                 m_rigidbody = null;
                 return;
             }
 
-            Ray ray = m_camera.ViewportPointToRay(new Vector3(.5f, .5f, .5f));
+            Ray ray = m_camera.ScreenPointToRay(Input.mousePosition);
+            Debug.Log(ray);
             if (Physics.Raycast(ray, out RaycastHit hit, m_pickUpRange, m_layerMask))
             {
+                Debug.Log("yay");
                 m_rigidbody = hit.rigidbody;
+                m_rigidbody.transform.parent = m_pickUpTarget;
                 m_rigidbody.useGravity = false;
             }
         }

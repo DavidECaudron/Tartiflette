@@ -39,16 +39,25 @@ public class PlayerControllerV2 : MonoBehaviour
 
         transform.Rotate(0, normalizedViewInput.x * _viewSpeed, 0);
 
+        Debug.Log(_cameraTransform.localRotation.x);
+
+        //if (_cameraTransform.localRotation.x < _lookUpMax || _cameraTransform.localRotation.x > _lookUpMin) return;
+
+
         if (_cameraTransform.localRotation.x < _lookUpMax)
         {
-            Quaternion rotation = _cameraTransform.localRotation;
-            _cameraTransform.localRotation = new Quaternion(rotation.x + 1f, rotation.y, rotation.z, rotation.w);
+           Debug.Log("trop haut");
+           Quaternion rotation = _cameraTransform.localRotation;
+           float var = Mathf.Lerp(rotation.x, rotation.x + 0.01f, Time.time);
+           _cameraTransform.localRotation = new Quaternion(var, rotation.y, rotation.z, rotation.w);
         }
         
         else if (_cameraTransform.localRotation.x > _lookUpMin)
         {
+            Debug.Log("trop bas");
             Quaternion rotation = _cameraTransform.localRotation;
-            _cameraTransform.localRotation = new Quaternion(rotation.x - 1f, rotation.y, rotation.z, rotation.w);
+            float var = Mathf.Lerp(rotation.x, rotation.x - 0.01f, Time.time);
+            _cameraTransform.localRotation = new Quaternion(var, rotation.y, rotation.z, rotation.w);
         }
 
         _cameraTransform.Rotate(-normalizedViewInput.y * _viewSpeed, 0, 0);

@@ -47,6 +47,7 @@ public class TpToArrivalPoint : MonoBehaviour
     {
         if (other.CompareTag("Player") || other.CompareTag("Object"))
         {
+            Debug.Log("gone");
             other.transform.position = m_arrivalPoint.position;
         }
     }

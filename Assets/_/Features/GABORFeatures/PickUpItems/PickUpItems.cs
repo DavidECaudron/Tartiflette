@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PickUpItems : MonoBehaviour
 {
@@ -12,11 +13,9 @@ public class PickUpItems : MonoBehaviour
     public LayerMask m_layerMask;
     public Rigidbody m_rigidbody;
 
-    #endregion Public Members
+    public InputAction m_actionButton;
 
-    private void Start()
-    {
-    }
+    #endregion Public Members
 
     private void Update()
     {
@@ -32,7 +31,7 @@ public class PickUpItems : MonoBehaviour
 
             Ray ray = m_camera.ScreenPointToRay(Input.mousePosition);
             Debug.Log(ray);
-            if (Physics.Raycast(ray, out RaycastHit hit, m_pickUpRange, m_layerMask))
+            if (Physics.Raycast(m_camera.transform.position, m_camera.transform.forward, out RaycastHit hit, m_pickUpRange, m_layerMask))
             {
                 Debug.Log("yay");
                 m_rigidbody = hit.rigidbody;

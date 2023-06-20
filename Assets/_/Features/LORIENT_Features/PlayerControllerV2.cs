@@ -5,15 +5,22 @@ public class PlayerControllerV2 : MonoBehaviour
 {
     #region Unity API
 
-    //private void Awake()
-    //{
-    //    _cameraTransform = Camera.main.transform;
-    //}
+    private void Awake()
+    {
+        Cursor.visible = false;
+        _cameraTransform = Camera.main.transform;
+        _rigidbody = GetComponent<Rigidbody>();
+    }
 
     private void Update()
     {
         TransformController();
         CameraController();
+    }
+
+    protected void LateUpdate()
+    {
+        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
     }
 
     #endregion
@@ -28,9 +35,9 @@ public class PlayerControllerV2 : MonoBehaviour
 
         direction.Normalize();
 
-        transform.TransformDirection(direction);
+        _rigidbody.velocity = direction * _moveSpeed;
 
-        transform.position += _moveSpeed * Time.deltaTime * direction;
+        //transform.position += _moveSpeed * Time.deltaTime * direction;
     }
 
     private void CameraController()
@@ -40,9 +47,6 @@ public class PlayerControllerV2 : MonoBehaviour
         transform.Rotate(0, normalizedViewInput.x * _viewSpeed, 0);
 
         Debug.Log(_cameraTransform.localRotation.x);
-
-        //if (_cameraTransform.localRotation.x < _lookUpMax || _cameraTransform.localRotation.x > _lookUpMin) return;
-
 
         if (_cameraTransform.localRotation.x < _lookUpMax)
         {
@@ -65,6 +69,8 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public void OnMoveInput(InputAction.CallbackContext ctx)
     {
+        if (PauseMenu._isPaused) return;
+
         if (ctx.performed)
         {
             _moveInput = ctx.ReadValue<Vector2>();
@@ -78,17 +84,8 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public void OnViewInput(InputAction.CallbackContext ctx)
     {
-        //if (_cameraTransform.rotation.x < _lookUpMax)
-        //{
-        //    Quaternion rotation = _cameraTransform.rotation;
-        //    _cameraTransform.rotation = new Quaternion(rotation.x + 1f, rotation.y, rotation.z, rotation.w);
-        //}
-        //
-        //else if (_cameraTransform.rotation.x > _lookUpMin)
-        //{
-        //    Quaternion rotation = _cameraTransform.rotation;
-        //    _cameraTransform.rotation = new Quaternion(rotation.x - 1f, rotation.y, rotation.z, rotation.w);
-        //}
+        if (PauseMenu._isPaused) return;
+
         _viewInput = ctx.ReadValue<Vector2>();
     }
 
@@ -101,9 +98,10 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private float _viewSpeed;
     [SerializeField] private float _lookUpMin;
     [SerializeField] private float _lookUpMax;
-    [SerializeField] private Transform _cameraTransform;
+    private Transform _cameraTransform;
     private Vector2 _moveInput;
     private Vector2 _viewInput;
+    private Rigidbody _rigidbody;
 
 	#endregion
 }

@@ -1,0 +1,160 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.UI;
+
+public enum Orientation
+{
+    x,
+    y,
+    z
+}
+
+public class InfiniteHallWayTest : MonoBehaviour
+{
+    #region Public Members
+
+    public List<Transform> m_sections;
+    public Orientation m_orientation;
+    public Transform m_player;
+    public float m_range;
+    private float _hallSize;
+
+    public float m_refreshRate;
+
+    #endregion Public Members
+
+    #region Unity API
+
+    private void Start()
+    {
+        SortHalls();
+        StartCoroutine(Timer());
+    }
+
+    private IEnumerator Timer()
+    {
+        while (true)
+        {
+            CheckIfEqualNumberBothSides();
+            yield return new WaitForSeconds(m_refreshRate);
+        }
+    }
+
+    private void SortHalls()
+    {
+        switch (m_orientation)
+        {
+            case Orientation.x:
+                m_sections.Sort((x, y) => x.position.x.CompareTo(y.position.x));
+                _hallSize = m_sections[0].GetChild(0).localScale.x;
+                break;
+
+            case Orientation.y:
+                m_sections.Sort((x, y) => x.position.y.CompareTo(y.position.y));
+                _hallSize = m_sections[0].GetChild(0).localScale.y;
+                break;
+
+            case Orientation.z:
+                m_sections.Sort((x, y) => x.position.z.CompareTo(y.position.z));
+                _hallSize = m_sections[0].GetChild(0).localScale.z;
+                break;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Handles.DrawWireDisc(m_player.position, transform.up, m_range);
+    }
+
+    #endregion Unity API
+
+    #region Main Methods
+
+    private void OnGUI()
+    {
+        if (GUILayout.Button("SpawnAhead"))
+        {
+            MoveAhead();
+        }
+        if (GUILayout.Button("SpawnBehind"))
+        {
+            MoveBehind();
+        }
+    }
+
+    public void CheckIfEqualNumberBothSides()
+    {
+        float distanceBehind = Vector3.Distance(m_player.position, m_sections[0].position);
+        float distanceAhead = Vector3.Distance(m_player.position, m_sections[m_sections.Count - 1].position);
+        Debug.Log(distanceBehind + ", " + distanceAhead);
+
+        if (distanceBehind <= m_range)
+        {
+            MoveBehind();
+            return;
+        }
+        else if (distanceAhead <= m_range)
+        {
+            MoveAhead();
+
+            return;
+        }
+    }
+
+    private void MoveBehind()
+    {
+        switch (m_orientation)
+        {
+            case Orientation.x:
+                Vector3 currentPosx = m_sections[0].transform.position;
+                m_sections[m_sections.Count - 1].transform.position = new Vector3(currentPosx.x - _hallSize, currentPosx.y, currentPosx.z);
+                break;
+
+            case Orientation.y:
+                Vector3 currentPosy = m_sections[0].transform.position;
+                m_sections[m_sections.Count - 1].transform.position = new Vector3(currentPosy.x, currentPosy.y - _hallSize, currentPosy.z);
+                break;
+
+            case Orientation.z:
+                Vector3 currentPosz = m_sections[0].transform.position;
+                m_sections[m_sections.Count - 1].transform.position = new Vector3(currentPosz.x, currentPosz.y, currentPosz.z - _hallSize);
+                break;
+
+            default:
+                break;
+        }
+
+        SortHalls();
+    }
+
+    private void MoveAhead()
+    {
+        switch (m_orientation)
+        {
+            case Orientation.x:
+                Vector3 currentPosx = m_sections[m_sections.Count - 1].transform.position;
+                m_sections[0].transform.position = new Vector3(currentPosx.x + _hallSize, currentPosx.y, currentPosx.z);
+                break;
+
+            case Orientation.y:
+                Vector3 currentPosy = m_sections[m_sections.Count - 1].transform.position;
+                m_sections[0].transform.position = new Vector3(currentPosy.x, currentPosy.y + _hallSize, currentPosy.z);
+                break;
+
+            case Orientation.z:
+                Vector3 currentPosz = m_sections[m_sections.Count - 1].transform.position;
+                m_sections[0].transform.position = new Vector3(currentPosz.x, currentPosz.y, currentPosz.z + _hallSize);
+                break;
+
+            default:
+                break;
+        }
+
+        SortHalls();
+    }
+
+    #endregion Main Methods
+}

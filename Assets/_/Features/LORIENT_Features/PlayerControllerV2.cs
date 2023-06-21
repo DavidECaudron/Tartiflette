@@ -46,8 +46,6 @@ public class PlayerControllerV2 : MonoBehaviour
 
         transform.Rotate(0, normalizedViewInput.x * _viewSpeed, 0);
 
-        Debug.Log(_cameraTransform.localRotation.x);
-
         if (_cameraTransform.localRotation.x < _lookUpMax)
         {
            Debug.Log("trop haut");

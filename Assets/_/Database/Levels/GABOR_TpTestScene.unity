@@ -995,6 +995,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9091850180686087448, guid: aa87d902040f7da488b0ad3c3fcca043, type: 3}
+      propertyPath: m_outPuts
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091850180686087448, guid: aa87d902040f7da488b0ad3c3fcca043, type: 3}
       propertyPath: m_arrivalPoint
       value: 
       objectReference: {fileID: 1722347790}

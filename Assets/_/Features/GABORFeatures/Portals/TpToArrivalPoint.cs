@@ -12,22 +12,32 @@ public enum Autorisations
 
 public enum Keys
 {
-    Cube,
-    BiggerCube,
-    Sphere
+    ItemA,
+    ItemB,
+    ItemC
+}
+
+public enum OutPuts
+{
+    ItemA,
+    ItemB,
+    ItemC
 }
 
 public class TpToArrivalPoint : MonoBehaviour
 {
     public Autorisations m_autorisations = Autorisations.EveryBody;
+    public Keys m_keys;
+    public OutPuts m_outPuts;
     public Transform m_arrivalPoint;
+    public ActivateItems m_itemActivator;
 
     private void OnTriggerEnter(Collider other)
     {
         switch (m_autorisations)
         {
             case Autorisations.ObjectOnly:
-                TpObject(other.gameObject);
+                CheckIfKeyIsRight(other.gameObject);
                 break;
 
             case Autorisations.PlayerOnly:
@@ -47,7 +57,6 @@ public class TpToArrivalPoint : MonoBehaviour
     {
         if (other.CompareTag("Player") || other.CompareTag("Object"))
         {
-            Debug.Log("gone");
             other.transform.position = m_arrivalPoint.position;
         }
     }
@@ -59,10 +68,49 @@ public class TpToArrivalPoint : MonoBehaviour
         other.transform.position = m_arrivalPoint.position;
     }
 
-    private void TpObject(GameObject other)
+    private void CheckIfKeyIsRight(GameObject other)
     {
-        if (!other.CompareTag("Object")) { return; }
+        switch (m_keys)
+        {
+            case Keys.ItemA:
+                TransformObject("ItemA", other);
+                break;
+
+            case Keys.ItemB:
+                TransformObject("ItemB", other);
+                break;
+
+            case Keys.ItemC:
+                TransformObject("ItemC", other);
+                break;
+
+            default:
+                break;
+        }
 
         other.transform.position = m_arrivalPoint.position;
+    }
+
+    private void TransformObject(string name, GameObject other)
+    {
+        if (!other.CompareTag(name)) { return; }
+
+        switch (m_outPuts)
+        {
+            case OutPuts.ItemA:
+                m_itemActivator.ActivateItemA();
+                break;
+
+            case OutPuts.ItemB:
+                m_itemActivator.ActivateItemB();
+                break;
+
+            case OutPuts.ItemC:
+                m_itemActivator.ActivateItemC();
+                break;
+
+            default:
+                break;
+        }
     }
 }

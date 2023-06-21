@@ -7,7 +7,7 @@ public class HalwayMover : MonoBehaviour
 {
     #region Private and Protected
 
-    private InfiniteHallwayManager _manager;
+    public InfiniteHallwayManager _manager;
     private float _hallSize;
 
     #endregion Private and Protected
@@ -16,7 +16,6 @@ public class HalwayMover : MonoBehaviour
 
     private void Awake()
     {
-        _manager = FindObjectOfType<InfiniteHallwayManager>();
         _hallSize = _manager.m_halls[0].transform.GetChild(0).localScale.x;
     }
 

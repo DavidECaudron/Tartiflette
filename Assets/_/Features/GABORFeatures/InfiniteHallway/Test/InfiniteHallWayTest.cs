@@ -19,7 +19,9 @@ public class InfiniteHallWayTest : MonoBehaviour
     public Orientation m_orientation;
     public Transform m_player;
     public float m_range;
-    private float _hallSize;
+    public float m_hallSize;
+    public float m_offset;
+    public float m_divider;
 
     public float m_refreshRate;
 
@@ -31,6 +33,7 @@ public class InfiniteHallWayTest : MonoBehaviour
     {
         SortHalls();
         StartCoroutine(Timer());
+        m_offset = ((m_sections.Count * m_hallSize) / m_divider);
     }
 
     private IEnumerator Timer()
@@ -48,17 +51,17 @@ public class InfiniteHallWayTest : MonoBehaviour
         {
             case Orientation.x:
                 m_sections.Sort((x, y) => x.position.x.CompareTo(y.position.x));
-                _hallSize = m_sections[0].GetChild(0).localScale.x;
+                m_hallSize = m_sections[0].GetChild(0).localScale.x;
                 break;
 
             case Orientation.y:
                 m_sections.Sort((x, y) => x.position.y.CompareTo(y.position.y));
-                _hallSize = m_sections[0].GetChild(0).localScale.y;
+                m_hallSize = m_sections[0].GetChild(0).localScale.y;
                 break;
 
             case Orientation.z:
                 m_sections.Sort((x, y) => x.position.z.CompareTo(y.position.z));
-                _hallSize = m_sections[0].GetChild(0).localScale.z;
+                m_hallSize = m_sections[0].GetChild(0).localScale.z;
                 break;
         }
     }
@@ -72,18 +75,6 @@ public class InfiniteHallWayTest : MonoBehaviour
     #endregion Unity API
 
     #region Main Methods
-
-    private void OnGUI()
-    {
-        if (GUILayout.Button("SpawnAhead"))
-        {
-            MoveAhead();
-        }
-        if (GUILayout.Button("SpawnBehind"))
-        {
-            MoveBehind();
-        }
-    }
 
     public void CheckIfEqualNumberBothSides()
     {
@@ -110,17 +101,17 @@ public class InfiniteHallWayTest : MonoBehaviour
         {
             case Orientation.x:
                 Vector3 currentPosx = m_sections[0].transform.position;
-                m_sections[m_sections.Count - 1].transform.position = new Vector3(currentPosx.x - _hallSize, currentPosx.y, currentPosx.z);
+                m_sections[m_sections.Count - 1].transform.position = new Vector3(currentPosx.x - m_hallSize, currentPosx.y, currentPosx.z);
                 break;
 
             case Orientation.y:
                 Vector3 currentPosy = m_sections[0].transform.position;
-                m_sections[m_sections.Count - 1].transform.position = new Vector3(currentPosy.x, currentPosy.y - _hallSize, currentPosy.z);
+                m_sections[m_sections.Count - 1].transform.position = new Vector3(currentPosy.x, currentPosy.y - m_hallSize, currentPosy.z);
                 break;
 
             case Orientation.z:
                 Vector3 currentPosz = m_sections[0].transform.position;
-                m_sections[m_sections.Count - 1].transform.position = new Vector3(currentPosz.x, currentPosz.y, currentPosz.z - _hallSize);
+                m_sections[m_sections.Count - 1].transform.position = new Vector3(currentPosz.x, currentPosz.y, currentPosz.z - m_hallSize);
                 break;
 
             default:
@@ -136,17 +127,17 @@ public class InfiniteHallWayTest : MonoBehaviour
         {
             case Orientation.x:
                 Vector3 currentPosx = m_sections[m_sections.Count - 1].transform.position;
-                m_sections[0].transform.position = new Vector3(currentPosx.x + _hallSize, currentPosx.y, currentPosx.z);
+                m_sections[0].transform.position = new Vector3(currentPosx.x + m_hallSize, currentPosx.y, currentPosx.z);
                 break;
 
             case Orientation.y:
                 Vector3 currentPosy = m_sections[m_sections.Count - 1].transform.position;
-                m_sections[0].transform.position = new Vector3(currentPosy.x, currentPosy.y + _hallSize, currentPosy.z);
+                m_sections[0].transform.position = new Vector3(currentPosy.x, currentPosy.y + m_hallSize, currentPosy.z);
                 break;
 
             case Orientation.z:
                 Vector3 currentPosz = m_sections[m_sections.Count - 1].transform.position;
-                m_sections[0].transform.position = new Vector3(currentPosz.x, currentPosz.y, currentPosz.z + _hallSize);
+                m_sections[0].transform.position = new Vector3(currentPosz.x, currentPosz.y, currentPosz.z + m_hallSize);
                 break;
 
             default:

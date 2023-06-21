@@ -362,6 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa856b80b0925444875a28776b91025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerTransform: {fileID: 0}
   _layerMask:
     serializedVersion: 2
     m_Bits: 0

@@ -25,7 +25,7 @@ public class HalwayMover : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Player")) { return; }
 
-        if (other.gameObject.GetComponent<Rigidbody>().velocity.x >= 0)
+        if (other.gameObject.GetComponent<Rigidbody>().velocity.x > 0)
         {
             Vector3 currentPos = _manager.m_halls[_manager.m_halls.Count - 1].transform.position;
             _manager.m_halls[0].transform.position = new Vector3(currentPos.x + _hallSize, currentPos.y, currentPos.z);

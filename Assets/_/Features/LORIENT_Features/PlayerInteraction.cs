@@ -29,7 +29,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             CheckIfTargetIsBed();
             CheckIfTagetIsDoor();
-            //CheckIfTargetIsPickableObject();
+            CheckIfTargetIsPickableObject();
             _isInputDown = true;
         }
         
@@ -56,7 +56,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (hit.collider.CompareTag("Door"))
         {
-            hit.collider.GetComponent<DoorBehaviour>().DoorInteraction();
+            hit.collider.GetComponent<DoorAnimator>().ToggleDoor();
         }
     }
 
@@ -64,21 +64,10 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (!Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hit, _range, _layerMask)) return;
 
-        if (hit.collider.CompareTag("ObjectA"))
+        if (hit.collider.CompareTag("Object"))
         {
-            hit.transform.SetParent(_playerTransform);
-            _isCarryingPickableObject = true;
-        }
-
-        else if (hit.collider.CompareTag("ObjectB"))
-        {
-            hit.transform.SetParent(_playerTransform);
-            _isCarryingPickableObject = true;
-        }
-
-        else if (hit.collider.CompareTag("ObjectC"))
-        {
-            hit.transform.SetParent(_playerTransform);
+            hit.transform.SetPositionAndRotation(_playerTransform.Find("Hand").transform.position, Quaternion.identity);
+            hit.transform.SetParent(_playerTransform.Find("Hand").transform);
             _isCarryingPickableObject = true;
         }
     }
@@ -86,9 +75,9 @@ public class PlayerInteraction : MonoBehaviour
     public static bool _isCarryingPickableObject;
 
     private Transform _cameraTransform;
-    private Transform _playerTransform;
     private bool _isInputDown;
 
+    [SerializeField] private Transform _playerTransform;
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private float _range;
 }

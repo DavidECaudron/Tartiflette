@@ -15,12 +15,8 @@ public class InfiniteHallWayTest : MonoBehaviour
 {
     #region Public Members
 
-    public static InfiniteHallWayTest instance;
-
     public List<Transform> m_sections;
     public Orientation m_orientation;
-    public LayerMask m_layerMask;
-
     public Transform m_player;
     public float m_range;
     private float _hallSize;
@@ -31,11 +27,6 @@ public class InfiniteHallWayTest : MonoBehaviour
 
     #region Unity API
 
-    private void Awake()
-    {
-        instance = this;
-    }
-
     private void Start()
     {
         SortHalls();
@@ -44,11 +35,11 @@ public class InfiniteHallWayTest : MonoBehaviour
 
     private IEnumerator Timer()
     {
-        CheckIfEqualNumberBothSides();
-        yield return new WaitForSeconds(m_refreshRate);
-        CheckIfEqualNumberBothSides();
-
-        StartCoroutine(Timer());
+        while (true)
+        {
+            CheckIfEqualNumberBothSides();
+            yield return new WaitForSeconds(m_refreshRate);
+        }
     }
 
     private void SortHalls()
@@ -100,8 +91,17 @@ public class InfiniteHallWayTest : MonoBehaviour
         float distanceAhead = Vector3.Distance(m_player.position, m_sections[m_sections.Count - 1].position);
         Debug.Log(distanceBehind + ", " + distanceAhead);
 
-        if (distanceBehind > m_range) { MoveAhead(); }
-        else if (distanceAhead > m_range) { MoveBehind(); }
+        if (distanceBehind <= m_range)
+        {
+            MoveBehind();
+            return;
+        }
+        else if (distanceAhead <= m_range)
+        {
+            MoveAhead();
+
+            return;
+        }
     }
 
     private void MoveBehind()

@@ -19,8 +19,6 @@ public class InfiniteHallWayTest : MonoBehaviour
 
     public List<Transform> m_sections;
     public Orientation m_orientation;
-    public LayerMask m_layerMask;
-
     public Transform m_player;
     public float m_range;
     private float _hallSize;
@@ -100,8 +98,16 @@ public class InfiniteHallWayTest : MonoBehaviour
         float distanceAhead = Vector3.Distance(m_player.position, m_sections[m_sections.Count - 1].position);
         Debug.Log(distanceBehind + ", " + distanceAhead);
 
-        if (distanceBehind > m_range) { MoveAhead(); }
-        else if (distanceAhead > m_range) { MoveBehind(); }
+        if (distanceBehind > m_range)
+        {
+            MoveAhead();
+            return;
+        }
+        else if (distanceAhead > m_range)
+        {
+            MoveBehind();
+            return;
+        }
     }
 
     private void MoveBehind()

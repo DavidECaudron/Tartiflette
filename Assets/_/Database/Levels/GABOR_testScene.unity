@@ -420,12 +420,9 @@ MonoBehaviour:
   - {fileID: 1465602862}
   - {fileID: 810739922}
   m_orientation: 0
-  m_layerMask:
-    serializedVersion: 2
-    m_Bits: 128
   m_player: {fileID: 2061286329}
-  m_range: 45
-  m_refreshRate: 0.5
+  m_range: 31
+  m_refreshRate: 0.1
 --- !u!4 &880700395
 Transform:
   m_ObjectHideFlags: 0

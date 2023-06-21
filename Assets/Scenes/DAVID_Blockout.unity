@@ -9900,6 +9900,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1578750852}
     - target: {fileID: 5311765138075301732, guid: b1d2bf948f872df47b0f6ba6624de4bc, type: 3}
+      propertyPath: m_divider
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5311765138075301732, guid: b1d2bf948f872df47b0f6ba6624de4bc, type: 3}
       propertyPath: m_refreshRate
       value: 0.25
       objectReference: {fileID: 0}

@@ -421,7 +421,7 @@ MonoBehaviour:
   - {fileID: 810739922}
   m_orientation: 0
   m_player: {fileID: 2061286329}
-  m_range: 31
+  m_range: 29
   m_refreshRate: 0.1
 --- !u!4 &880700395
 Transform:
@@ -602,6 +602,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3181149659096559613, guid: 55b895c971751114eafa9a06d79b1ebb, type: 3}
+      propertyPath: m_manager
+      value: 
+      objectReference: {fileID: 880700394}
     - target: {fileID: 7423065104925567453, guid: 55b895c971751114eafa9a06d79b1ebb, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -813,6 +817,10 @@ PrefabInstance:
     - target: {fileID: 6480435026483909797, guid: 9d5e64b490afcad4e89e78def14f0fb5, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480435026483909807, guid: 9d5e64b490afcad4e89e78def14f0fb5, type: 3}
+      propertyPath: _moveSpeed
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d5e64b490afcad4e89e78def14f0fb5, type: 3}

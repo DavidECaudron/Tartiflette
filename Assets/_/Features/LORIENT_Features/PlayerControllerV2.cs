@@ -23,8 +23,7 @@ public class PlayerControllerV2 : MonoBehaviour
         transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
     }
 
-    #endregion
-
+    #endregion Unity API
 
     #region Main Methods
 
@@ -35,9 +34,16 @@ public class PlayerControllerV2 : MonoBehaviour
 
         direction.Normalize();
 
-        _rigidbody.velocity = direction * _moveSpeed;
+        _rigidbody.velocity = new Vector3(direction.x, -1, direction.z) * _moveSpeed;
 
-        //transform.position += _moveSpeed * Time.deltaTime * direction;
+        //if (_rigidbody.velocity != Vector3.zero)
+        //{
+        //    _audioSource.Play();
+        //}
+        //else
+        //{
+        //    _audioSource.Pause();
+        //}
     }
 
     private void CameraController()
@@ -48,11 +54,10 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (_cameraTransform.localRotation.x < _lookUpMax)
         {
-           Quaternion rotation = _cameraTransform.localRotation;
-           float var = Mathf.Lerp(rotation.x, rotation.x + 0.01f, Time.time);
-           _cameraTransform.localRotation = new Quaternion(var, rotation.y, rotation.z, rotation.w);
+            Quaternion rotation = _cameraTransform.localRotation;
+            float var = Mathf.Lerp(rotation.x, rotation.x + 0.01f, Time.time);
+            _cameraTransform.localRotation = new Quaternion(var, rotation.y, rotation.z, rotation.w);
         }
-        
         else if (_cameraTransform.localRotation.x > _lookUpMin)
         {
             Quaternion rotation = _cameraTransform.localRotation;
@@ -65,7 +70,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public void OnMoveInput(InputAction.CallbackContext ctx)
     {
-        if (PauseMenu._isPaused) return;
+        if (Menu._isPaused) return;
 
         if (ctx.performed)
         {
@@ -80,13 +85,12 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public void OnViewInput(InputAction.CallbackContext ctx)
     {
-        if (PauseMenu._isPaused) return;
+        if (Menu._isPaused) return;
 
         _viewInput = ctx.ReadValue<Vector2>();
     }
 
-    #endregion
-
+    #endregion Main Methods
 
     #region Private and Protected Members
 
@@ -98,6 +102,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private Vector2 _moveInput;
     private Vector2 _viewInput;
     private Rigidbody _rigidbody;
+    private AudioSource _audioSource;
 
-	#endregion
+    #endregion Private and Protected Members
 }

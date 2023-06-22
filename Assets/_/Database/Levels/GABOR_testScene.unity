@@ -446,11 +446,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 679612780}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &684174490 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8214277511209946780, guid: 55b895c971751114eafa9a06d79b1ebb, type: 3}
-  m_PrefabInstance: {fileID: 2115656148}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &810739921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -743,7 +738,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: b2bdfa3b1a26208438f610b36eadbe43, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -1026,7 +1021,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: b2bdfa3b1a26208438f610b36eadbe43, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -1886,6 +1881,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6480435026660436973, guid: 9d5e64b490afcad4e89e78def14f0fb5, type: 3}
+      propertyPath: m_Depth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480435026660436973, guid: 9d5e64b490afcad4e89e78def14f0fb5, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 183
       objectReference: {fileID: 0}
@@ -1970,20 +1969,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7423065104925567453, guid: 55b895c971751114eafa9a06d79b1ebb, type: 3}
   m_PrefabInstance: {fileID: 2115656148}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2115656150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 684174490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d0a5ed96dccbc642936de368619a0ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_carriableObject: {fileID: 6551350957241682707, guid: 03f467f470b4d014e8283a7d7911695f, type: 3}
-  m_itemContainer: {fileID: 1839288572}
 --- !u!114 &2134581387 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2142598738, guid: 9d5e64b490afcad4e89e78def14f0fb5, type: 3}

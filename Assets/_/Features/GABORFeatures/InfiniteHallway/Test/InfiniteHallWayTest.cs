@@ -94,7 +94,7 @@ public class InfiniteHallWayTest : MonoBehaviour
     {
         foreach (var section in m_sections)
         {
-            section.gameObject.GetComponent<GenerateItemIfEmpty>().GenerateIfItemTaken();
+            if (section.GetComponent<GenerateItemIfEmpty>() != null) { section.gameObject.GetComponent<GenerateItemIfEmpty>().GenerateIfItemTaken(); }
         }
     }
 

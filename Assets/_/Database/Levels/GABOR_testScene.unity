@@ -1176,7 +1176,7 @@ PrefabInstance:
     - target: {fileID: 4787785686923025324, guid: 3aed0770431202e4c9a944811ad364f5, type: 3}
       propertyPath: m_cameraB
       value: 
-      objectReference: {fileID: 1155004557}
+      objectReference: {fileID: 0}
     - target: {fileID: 4787785686923025324, guid: 3aed0770431202e4c9a944811ad364f5, type: 3}
       propertyPath: m_cameraATexture
       value: 

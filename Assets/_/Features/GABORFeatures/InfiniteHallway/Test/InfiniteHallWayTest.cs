@@ -77,7 +77,6 @@ public class InfiniteHallWayTest : MonoBehaviour
     {
         float distanceBehind = Vector3.Distance(m_player.position, m_sections[0].position);
         float distanceAhead = Vector3.Distance(m_player.position, m_sections[m_sections.Count - 1].position);
-        Debug.Log(distanceBehind + ", " + distanceAhead);
 
         if (distanceBehind <= m_range)
         {
@@ -87,8 +86,15 @@ public class InfiniteHallWayTest : MonoBehaviour
         else if (distanceAhead <= m_range)
         {
             MoveAhead();
-
             return;
+        }
+    }
+
+    private void SpawnIfEmpty()
+    {
+        foreach (var section in m_sections)
+        {
+            if (section.GetComponent<GenerateItemIfEmpty>() != null) { section.gameObject.GetComponent<GenerateItemIfEmpty>().GenerateIfItemTaken(); }
         }
     }
 
@@ -114,7 +120,7 @@ public class InfiniteHallWayTest : MonoBehaviour
             default:
                 break;
         }
-
+        SpawnIfEmpty();
         SortHalls();
     }
 
@@ -140,7 +146,7 @@ public class InfiniteHallWayTest : MonoBehaviour
             default:
                 break;
         }
-
+        SpawnIfEmpty();
         SortHalls();
     }
 

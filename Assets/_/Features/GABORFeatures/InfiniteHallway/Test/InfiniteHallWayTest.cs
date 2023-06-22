@@ -51,17 +51,14 @@ public class InfiniteHallWayTest : MonoBehaviour
         {
             case Orientation.x:
                 m_sections.Sort((x, y) => x.position.x.CompareTo(y.position.x));
-                m_hallSize = m_sections[0].GetChild(0).localScale.x;
                 break;
 
             case Orientation.y:
                 m_sections.Sort((x, y) => x.position.y.CompareTo(y.position.y));
-                m_hallSize = m_sections[0].GetChild(0).localScale.y;
                 break;
 
             case Orientation.z:
                 m_sections.Sort((x, y) => x.position.z.CompareTo(y.position.z));
-                m_hallSize = m_sections[0].GetChild(0).localScale.z;
                 break;
         }
     }

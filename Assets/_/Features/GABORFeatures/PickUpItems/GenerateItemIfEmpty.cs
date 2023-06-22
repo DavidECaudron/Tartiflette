@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GenerateItemIfEmpty : MonoBehaviour
 {
-    public Transform m_carriableObject;
+    public GameObject m_carriableObject;
     public Transform m_itemContainer;
 
     public void GenerateIfItemTaken()

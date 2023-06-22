@@ -45,21 +45,18 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (!Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _range, _layerMask)) return;
 
-        if (hit.collider.CompareTag("Bed"))
-        {
-            Debug.Log("zzz");
-            PauseMenu.QuitGame();
-        }
+        if (!hit.collider.CompareTag("Bed"))
+
+        Menu.QuitGame();
     }
 
     private void CheckIfTagetIsDoor()
     {
         if (!Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _range, _layerMask)) return;
 
-        if (hit.collider.CompareTag("Door"))
-        {
-            hit.collider.GetComponent<DoorAnimator>().ToggleDoor();
-        }
+        if (!hit.collider.CompareTag("Door")) return;
+
+        hit.collider.GetComponent<DoorAnimator>().ToggleDoor();
     }
 
     public void ObjectAction()
@@ -75,15 +72,15 @@ public class PlayerInteraction : MonoBehaviour
         Ray cameraRay = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         if (Physics.Raycast(cameraRay, out RaycastHit hit, _range, _layerMask))
         {
+            if (!hit.collider.CompareTag("ObjectA") && !hit.collider.CompareTag("ObjectB") && !hit.collider.CompareTag("ObjectC")) return;
             objectRigidbody = hit.rigidbody;
             objectRigidbody.useGravity = false;
-            objectRigidbody.transform.SetParent(_playerTransform.Find("Hand").transform);
+            objectRigidbody.velocity = Vector3.zero;
+            objectRigidbody.transform.SetParent(_pickUpTarget);
         }
         else return;
     }
 
-
-    private bool _isCarryingPickableObject;
     private Camera _camera;
     private bool _isInputDown;
     private Rigidbody objectRigidbody;

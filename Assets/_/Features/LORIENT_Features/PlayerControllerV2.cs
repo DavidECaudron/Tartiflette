@@ -35,7 +35,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         direction.Normalize();
 
-        _rigidbody.velocity = direction * _moveSpeed;
+        _rigidbody.velocity = new Vector3(direction.x, -1, direction.z) * _moveSpeed;
 
         //transform.position += _moveSpeed * Time.deltaTime * direction;
     }
@@ -65,7 +65,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public void OnMoveInput(InputAction.CallbackContext ctx)
     {
-        if (PauseMenu._isPaused) return;
+        if (Menu._isPaused) return;
 
         if (ctx.performed)
         {
@@ -80,7 +80,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public void OnViewInput(InputAction.CallbackContext ctx)
     {
-        if (PauseMenu._isPaused) return;
+        if (Menu._isPaused) return;
 
         _viewInput = ctx.ReadValue<Vector2>();
     }

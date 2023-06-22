@@ -6,5 +6,9 @@ public class SetItemAsChild : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("ObjectA") || collision.gameObject.CompareTag("ObjectB") || collision.gameObject.CompareTag("ObjectC"))
+        {
+            collision.transform.parent.SetParent(transform);
+        }
     }
 }

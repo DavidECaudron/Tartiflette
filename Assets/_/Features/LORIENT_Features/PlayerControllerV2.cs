@@ -48,7 +48,6 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (_cameraTransform.localRotation.x < _lookUpMax)
         {
-           Debug.Log("trop haut");
            Quaternion rotation = _cameraTransform.localRotation;
            float var = Mathf.Lerp(rotation.x, rotation.x + 0.01f, Time.time);
            _cameraTransform.localRotation = new Quaternion(var, rotation.y, rotation.z, rotation.w);
@@ -56,7 +55,6 @@ public class PlayerControllerV2 : MonoBehaviour
         
         else if (_cameraTransform.localRotation.x > _lookUpMin)
         {
-            Debug.Log("trop bas");
             Quaternion rotation = _cameraTransform.localRotation;
             float var = Mathf.Lerp(rotation.x, rotation.x - 0.01f, Time.time);
             _cameraTransform.localRotation = new Quaternion(var, rotation.y, rotation.z, rotation.w);

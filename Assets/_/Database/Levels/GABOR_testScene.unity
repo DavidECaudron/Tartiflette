@@ -738,7 +738,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: b2bdfa3b1a26208438f610b36eadbe43, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -1021,7 +1021,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: b2bdfa3b1a26208438f610b36eadbe43, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -1176,7 +1176,7 @@ PrefabInstance:
     - target: {fileID: 4787785686923025324, guid: 3aed0770431202e4c9a944811ad364f5, type: 3}
       propertyPath: m_cameraB
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1155004557}
     - target: {fileID: 4787785686923025324, guid: 3aed0770431202e4c9a944811ad364f5, type: 3}
       propertyPath: m_cameraATexture
       value: 
@@ -1879,6 +1879,10 @@ PrefabInstance:
     - target: {fileID: 6480435026483909807, guid: 9d5e64b490afcad4e89e78def14f0fb5, type: 3}
       propertyPath: _moveSpeed
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480435026660436973, guid: 9d5e64b490afcad4e89e78def14f0fb5, type: 3}
+      propertyPath: m_Depth
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6480435026660436973, guid: 9d5e64b490afcad4e89e78def14f0fb5, type: 3}
       propertyPath: m_CullingMask.m_Bits

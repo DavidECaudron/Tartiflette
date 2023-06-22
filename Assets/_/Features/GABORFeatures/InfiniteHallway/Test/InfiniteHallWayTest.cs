@@ -63,12 +63,6 @@ public class InfiniteHallWayTest : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Handles.DrawWireDisc(m_player.position, transform.up, m_range);
-    }
-
     #endregion Unity API
 
     #region Main Methods

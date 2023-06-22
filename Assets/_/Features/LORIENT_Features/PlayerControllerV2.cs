@@ -37,7 +37,14 @@ public class PlayerControllerV2 : MonoBehaviour
 
         _rigidbody.velocity = new Vector3(direction.x, -1, direction.z) * _moveSpeed;
 
-        //transform.position += _moveSpeed * Time.deltaTime * direction;
+        if (_rigidbody.velocity != Vector3.zero)
+        {
+            _audioSource.Play();
+        }
+        else
+        {
+            _audioSource.Pause();
+        }
     }
 
     private void CameraController()
@@ -98,6 +105,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private Vector2 _moveInput;
     private Vector2 _viewInput;
     private Rigidbody _rigidbody;
+    private AudioSource _audioSource;
 
 	#endregion
 }

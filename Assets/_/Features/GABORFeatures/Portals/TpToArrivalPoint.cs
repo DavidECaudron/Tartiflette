@@ -30,7 +30,6 @@ public class TpToArrivalPoint : MonoBehaviour
     public Keys m_keys;
     public OutPuts m_outPuts;
     public Transform m_arrivalPoint;
-    public ActivateItems m_itemActivator;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -73,40 +72,42 @@ public class TpToArrivalPoint : MonoBehaviour
         switch (m_keys)
         {
             case Keys.ItemA:
-                TransformObject("ItemA", other);
+                TransformObject("ObjectA", other);
                 break;
 
             case Keys.ItemB:
-                TransformObject("ItemB", other);
+                TransformObject("ObjectB", other);
                 break;
 
             case Keys.ItemC:
-                TransformObject("ItemC", other);
+                TransformObject("ObjectC", other);
                 break;
 
             default:
                 break;
         }
-
-        other.transform.position = m_arrivalPoint.position;
     }
 
     private void TransformObject(string name, GameObject other)
     {
+        Debug.Log(other.tag);
         if (!other.CompareTag(name)) { return; }
 
         switch (m_outPuts)
         {
             case OutPuts.ItemA:
-                m_itemActivator.ActivateItemA();
+                other.transform.parent.GetComponent<ActivateItems>().ActivateItemA();
+                other.transform.parent.position = m_arrivalPoint.position;
                 break;
 
             case OutPuts.ItemB:
-                m_itemActivator.ActivateItemB();
+                other.transform.parent.GetComponent<ActivateItems>().ActivateItemB();
+                other.transform.parent.position = m_arrivalPoint.position;
                 break;
 
             case OutPuts.ItemC:
-                m_itemActivator.ActivateItemC();
+                other.transform.parent.GetComponent<ActivateItems>().ActivateItemC();
+                other.transform.parent.position = m_arrivalPoint.position;
                 break;
 
             default:

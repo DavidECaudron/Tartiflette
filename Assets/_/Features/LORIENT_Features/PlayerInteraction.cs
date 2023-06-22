@@ -67,15 +67,17 @@ public class PlayerInteraction : MonoBehaviour
         if (objectRigidbody)
         {
             objectRigidbody.useGravity = true;
+            objectRigidbody.transform.SetParent(null);
             objectRigidbody = null;
             return;
         }
 
         Ray cameraRay = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-        if (Physics.Raycast(cameraRay, out RaycastHit hit, _pickUpRange, _layerMask))
+        if (Physics.Raycast(cameraRay, out RaycastHit hit, _range, _layerMask))
         {
             objectRigidbody = hit.rigidbody;
             objectRigidbody.useGravity = false;
+            objectRigidbody.transform.SetParent(_playerTransform.Find("Hand").transform);
         }
         else return;
     }
@@ -86,7 +88,6 @@ public class PlayerInteraction : MonoBehaviour
     private bool _isInputDown;
     private Rigidbody objectRigidbody;
 
-    [SerializeField] private float _pickUpRange;
     [SerializeField] private Transform _pickUpTarget;
     [SerializeField] private Transform _playerTransform;
     [SerializeField] private LayerMask _layerMask;

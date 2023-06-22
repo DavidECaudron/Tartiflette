@@ -29,9 +29,9 @@ public class TpToArrivalPoint : MonoBehaviour
     public OutPuts[] m_outPuts;
 
     public Transform m_arrivalPoint;
-    public Transform m_objectA;
-    public Transform m_objectB;
-    public Transform m_objectC;
+    public GameObject m_objectA;
+    public GameObject m_objectB;
+    public GameObject m_objectC;
 
     private void OnTriggerEnter(Collider other)
     {

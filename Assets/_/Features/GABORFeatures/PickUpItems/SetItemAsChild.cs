@@ -8,7 +8,7 @@ public class SetItemAsChild : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ObjectA") || collision.gameObject.CompareTag("ObjectB") || collision.gameObject.CompareTag("ObjectC"))
         {
-            collision.transform.parent.SetParent(transform);
+            collision.transform.SetParent(transform);
         }
     }
 }

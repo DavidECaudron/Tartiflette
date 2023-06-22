@@ -24,11 +24,14 @@ public enum OutPuts
 public class TpToArrivalPoint : MonoBehaviour
 {
     public Autorisations m_autorisations = Autorisations.EveryBody;
-    public Keys m_keys;
 
-    public OutPuts m_outPuts;
+    public Keys[] m_keys;
+    public OutPuts[] m_outPuts;
 
     public Transform m_arrivalPoint;
+    public Transform m_objectA;
+    public Transform m_objectB;
+    public Transform m_objectC;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -76,82 +79,82 @@ public class TpToArrivalPoint : MonoBehaviour
 
     private void CheckIfKeyIsRight(GameObject other)
     {
-        //foreach (var key in m_keys)
-        //{
-        //    Debug.Log("check");
-        //    if (key.ToString() == other.tag)
-        //    {
-        //        TransformObject(key.ToString(), other.gameObject);
-        //    }
-        //}
-        switch (m_keys)
+        foreach (var key in m_keys)
         {
-            case Keys.ObjectA:
-                TransformObject("ObjectA", other);
-                break;
-
-            case Keys.ObjectB:
-                TransformObject("ObjectB", other);
-                break;
-
-            case Keys.ObjectC:
-                TransformObject("ObjectC", other);
-                break;
-
-            default:
-                break;
+            Debug.Log("check");
+            if (key.ToString() == other.tag)
+            {
+                TransformObject(key.ToString(), other.gameObject);
+            }
         }
+        //switch (m_keys)
+        //{
+        //    case Keys.ObjectA:
+        //        TransformObject("ObjectA", other);
+        //        break;
+
+        //    case Keys.ObjectB:
+        //        TransformObject("ObjectB", other);
+        //        break;
+
+        //    case Keys.ObjectC:
+        //        TransformObject("ObjectC", other);
+        //        break;
+
+        //    default:
+        //        break;
+        //}
     }
 
     private void TransformObject(string name, GameObject other)
     {
-        if (!other.CompareTag(name))
-        {
-            return;
-        }
-
-        //foreach (var outputs in m_outPuts)
+        //if (!other.CompareTag(name))
         //{
-        //    Debug.Log("out");
-        //    if (outputs.ToString() != name)
-        //    {
-        //        Debug.Log(other);
-        //        if (outputs.ToString() == "ObjectA")
-        //        {
-        //            other.transform.parent.GetComponent<ActivateItems>().ActivateItemA();
-        //            other.transform.parent.position = m_arrivalPoint.position;
-        //        }
-        //        else if (outputs.ToString() == "ObjectB")
-        //        {
-        //            other.transform.parent.transform.GetComponent<ActivateItems>().ActivateItemB();
-        //            other.transform.parent.position = m_arrivalPoint.position;
-        //        }
-        //        else if (outputs.ToString() == "ObjectC")
-        //        {
-        //            other.transform.parent.transform.GetComponent<ActivateItems>().ActivateItemC();
-        //            other.transform.parent.position = m_arrivalPoint.position;
-        //        }
-        //    }
+        //    return;
         //}
-        switch (m_outPuts)
+
+        foreach (var outputs in m_outPuts)
         {
-            case OutPuts.ObjectA:
-                other.transform.parent.GetComponent<ActivateItems>().ActivateItemA();
-                other.transform.parent.position = m_arrivalPoint.position;
-                break;
-
-            case OutPuts.ObjectB:
-                other.transform.parent.GetComponent<ActivateItems>().ActivateItemB();
-                other.transform.parent.position = m_arrivalPoint.position;
-                break;
-
-            case OutPuts.ObjectC:
-                other.transform.parent.GetComponent<ActivateItems>().ActivateItemC();
-                other.transform.parent.position = m_arrivalPoint.position;
-                break;
-
-            default:
-                break;
+            Debug.Log("out");
+            if (outputs.ToString() != name)
+            {
+                Debug.Log(other);
+                if (outputs.ToString() == "ObjectA")
+                {
+                    Destroy(other);
+                    Instantiate(m_objectA, m_arrivalPoint.position + Vector3.one, Quaternion.identity);
+                }
+                else if (outputs.ToString() == "ObjectB")
+                {
+                    Destroy(other);
+                    Instantiate(m_objectB, m_arrivalPoint.position + Vector3.one, Quaternion.identity);
+                }
+                else if (outputs.ToString() == "ObjectC")
+                {
+                    Destroy(other);
+                    Instantiate(m_objectC, m_arrivalPoint.position + Vector3.one, Quaternion.identity);
+                }
+            }
         }
+        //switch (m_outPuts)
+        //{
+        //    case OutPuts.ObjectA:
+        //        other.transform.parent.GetComponent<ActivateItems>().ActivateItemA();
+        //        other.transform.parent.position = m_arrivalPoint.position;
+        //        break;
+
+        //    case OutPuts.ObjectB:
+        //        other.transform.parent.GetComponent<ActivateItems>().ActivateItemB();
+        //        other.transform.parent.position = m_arrivalPoint.position;
+        //        break;
+
+        //    case OutPuts.ObjectC:
+        //        other.transform.parent.GetComponent<ActivateItems>().ActivateItemC();
+        //        other.transform.parent.position = m_arrivalPoint.position;
+        //        break;
+
+        //    default:
+        //        break;
+        //}
     }
 }

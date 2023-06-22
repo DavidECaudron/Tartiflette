@@ -54,9 +54,17 @@ public class TpToArrivalPoint : MonoBehaviour
 
     private void TpEverybody(GameObject other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Object"))
+        if (other.CompareTag("Player"))
         {
             other.transform.position = m_arrivalPoint.position;
+        }
+        else if (other.CompareTag("ObjectA") || other.CompareTag("ObjectB") || other.CompareTag("ObjectC"))
+        {
+            CheckIfKeyIsRight(other.gameObject);
+        }
+        else
+        {
+            return;
         }
     }
 

@@ -76,11 +76,13 @@ public class PlayerControllerV2 : MonoBehaviour
         if (ctx.performed)
         {
             _moveInput = ctx.ReadValue<Vector2>();
+            //_audioSource.Play();
         }
 
         if (ctx.canceled)
         {
             _moveInput = ctx.ReadValue<Vector2>();
+            //_audioSource.Stop();
         }
     }
 
@@ -99,6 +101,7 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private float _viewSpeed;
     [SerializeField] private float _lookUpMin;
     [SerializeField] private float _lookUpMax;
+    [SerializeField] private AudioSource _walkAudio;
     private Transform _cameraTransform;
     private Vector2 _moveInput;
     private Vector2 _viewInput;

@@ -46,6 +46,7 @@ public class Menu : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
     }
 
     public static void QuitGame()

@@ -46,7 +46,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (!Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _range, _layerMask)) return;
 
-        if (!hit.collider.CompareTag("Bed"))
+        if (!hit.collider.CompareTag("Bed")) return;
 
         Menu.QuitGame();
     }

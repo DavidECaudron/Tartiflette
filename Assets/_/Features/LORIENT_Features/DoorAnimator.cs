@@ -6,6 +6,7 @@ public class DoorAnimator : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _audioSourceOpen = GetComponent<AudioSource>();
+        _audioSourceClose = GetComponent<AudioSource>();
     }
 
     public void ToggleDoor()

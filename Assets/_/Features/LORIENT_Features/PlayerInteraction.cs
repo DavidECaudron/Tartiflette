@@ -28,9 +28,10 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (context.started && !_isInputDown)
         {
+            ObjectAction();
             CheckIfTargetIsBed();
             CheckIfTagetIsDoor();
-            ObjectAction();
+            CheckIfTargetIsGlitch();
             _isInputDown = true;
         }
         
@@ -57,6 +58,15 @@ public class PlayerInteraction : MonoBehaviour
         if (!hit.collider.CompareTag("Door")) return;
 
         hit.collider.GetComponent<DoorAnimator>().ToggleDoor();
+    }
+
+    private void CheckIfTargetIsGlitch()
+    {
+        if (!Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _range, _layerMask)) return;
+
+        if (!hit.collider.CompareTag("Glitch")) return;
+
+        hit.collider.GetComponent<GlitchThroughFloor>().Glitch();
     }
 
     public void ObjectAction()

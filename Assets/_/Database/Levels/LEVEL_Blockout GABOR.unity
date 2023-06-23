@@ -7402,6 +7402,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4754833421970935003, guid: a6f8be21b846ade4cbcd128358fb1c68, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 559873829c531e64fa08b898fa1bd69b, type: 2}
     - target: {fileID: 6097362768400786366, guid: a6f8be21b846ade4cbcd128358fb1c68, type: 3}
       propertyPath: m_Name
       value: Table de Chevet
@@ -14379,19 +14383,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &1437161185
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437161182}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.7, y: 1.15, z: 0.5}
-  m_Center: {x: 0, y: 0.58, z: 0.03}
 --- !u!1001 &1444400507
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16854,6 +16845,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2470871100647632699, guid: fbbfa0864fefb734787f824f88c1caff, type: 3}
   m_PrefabInstance: {fileID: 1688193747}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1689995821 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2470871100109633686, guid: fbbfa0864fefb734787f824f88c1caff, type: 3}
+  m_PrefabInstance: {fileID: 1751009297}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1689995825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689995821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da05dd3022d7d343a45e97df85cf21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1691159949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20357,7 +20365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d0a5ed96dccbc642936de368619a0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_carriableObject: {fileID: 1437161183}
+  m_carriableObject: {fileID: 6097362768400786366, guid: a6f8be21b846ade4cbcd128358fb1c68, type: 3}
   m_itemContainer: {fileID: 1980399453}
 --- !u!1 &1919509478
 GameObject:

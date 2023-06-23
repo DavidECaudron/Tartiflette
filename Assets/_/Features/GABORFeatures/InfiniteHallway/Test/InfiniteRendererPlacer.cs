@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class InfiniteRendererPlacer : MonoBehaviour
 {
     public GameObject m_endPlane;
     public GameObject m_startPlane;
-    public InfiniteHallWayTest m_manager;
+    public float m_offset;
     public Transform m_player;
 
     private void Update()
     {
-        m_endPlane.transform.position = new Vector3(m_player.position.x - m_manager.m_offset, m_endPlane.transform.position.y, m_endPlane.transform.position.z);
-        m_startPlane.transform.position = new Vector3(m_player.position.x + m_manager.m_offset, m_startPlane.transform.position.y, m_startPlane.transform.position.z);
+        var position = m_endPlane.transform.position;
+        position = new Vector3(m_player.position.x - m_offset, position.y, position.z);
+        m_endPlane.transform.position = position;
+        
+        var position1 = m_startPlane.transform.position;
+        position1 = new Vector3(m_player.position.x + m_offset, position1.y, position1.z);
+        m_startPlane.transform.position = position1;
     }
 }

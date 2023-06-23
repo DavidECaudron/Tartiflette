@@ -30,6 +30,7 @@ public class TpToArrivalPoint : MonoBehaviour
     public OutPuts[] m_outPuts;
 
     public Transform m_arrivalPoint;
+    public Transform m_objectArrivalPoint;
     public Transform m_player;
     public GameObject m_objectA;
     public GameObject m_objectB;
@@ -141,17 +142,17 @@ public class TpToArrivalPoint : MonoBehaviour
                 if (outputs.ToString() == "ObjectA")
                 {
                     Destroy(other);
-                    Instantiate(m_objectA, m_arrivalPoint.position + Vector3.one, Quaternion.identity);
+                    Instantiate(m_objectA, m_objectArrivalPoint.position + Vector3.one, Quaternion.identity);
                 }
                 else if (outputs.ToString() == "ObjectB")
                 {
                     Destroy(other);
-                    Instantiate(m_objectB, m_arrivalPoint.position + Vector3.one, Quaternion.identity);
+                    Instantiate(m_objectB, m_objectArrivalPoint.position + Vector3.one, Quaternion.identity);
                 }
                 else if (outputs.ToString() == "ObjectC")
                 {
                     Destroy(other);
-                    Instantiate(m_objectC, m_arrivalPoint.position + Vector3.one, Quaternion.identity);
+                    Instantiate(m_objectC, m_objectArrivalPoint.position + Vector3.one, Quaternion.identity);
                 }
             }
         }

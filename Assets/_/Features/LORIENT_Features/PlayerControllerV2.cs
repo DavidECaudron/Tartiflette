@@ -14,14 +14,12 @@ public class PlayerControllerV2 : MonoBehaviour
 
     private void Update()
     {
-        TransformController();
+        CameraController();
     }
 
-    protected void LateUpdate()
+    private void FixedUpdate()
     {
-        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
-
-        CameraController();
+        TransformController();
     }
 
     #endregion Unity API
@@ -35,9 +33,9 @@ public class PlayerControllerV2 : MonoBehaviour
 
         direction.Normalize();
 
-        _rigidbody.velocity = new Vector3(direction.x, -1, direction.z) * _moveSpeed;
+        //_rigidbody.velocity = new Vector3(direction.x, -1, direction.z) * _moveSpeed;
 
-        //_rigidbody.MovePosition(new Vector3(direction.x, 0, direction.z) * _moveSpeed);
+        _rigidbody.AddForce(new Vector3(direction.x, 0, direction.z) * _moveSpeed, ForceMode.Acceleration);
 
         //if (_rigidbody.velocity != Vector3.zero)
         //{

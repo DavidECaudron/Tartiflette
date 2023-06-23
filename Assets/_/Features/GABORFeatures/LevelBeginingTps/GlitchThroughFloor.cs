@@ -7,16 +7,15 @@ public class GlitchThroughFloor : MonoBehaviour
 {
     [SerializeField]
     private Collider m_floorToFallThrough;
+    [SerializeField] DoorAnimator _doorAnimator;
 
-    private void OnGUI()
+    public void Glitch()
     {
-        if (GUILayout.Button("Glitch"))
-        {
-            Glitch();
-        }
+        _doorAnimator.ToggleDoor();
+        Invoke("FallTroughTheFloor", 2f);
     }
 
-    private void Glitch()
+    private void FallTroughTheFloor()
     {
         m_floorToFallThrough.isTrigger = true;
     }

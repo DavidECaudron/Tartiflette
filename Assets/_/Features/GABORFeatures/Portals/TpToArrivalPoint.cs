@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum Autorisations
@@ -29,10 +30,12 @@ public class TpToArrivalPoint : MonoBehaviour
     public OutPuts[] m_outPuts;
 
     public Transform m_arrivalPoint;
+    public Transform m_player;
     public GameObject m_objectA;
     public GameObject m_objectB;
     public GameObject m_objectC;
-
+    
+    public bool _isOtherPortalfacingTheSameDirection;
     private void OnTriggerEnter(Collider other)
     {
         switch (m_autorisations)
@@ -53,12 +56,14 @@ public class TpToArrivalPoint : MonoBehaviour
                 break;
         }
     }
+    
 
     private void TpEverybody(GameObject other)
     {
         if (other.CompareTag("Player"))
         {
-            other.transform.position = m_arrivalPoint.position;
+            TeleportPlayer(other);
+            
         }
         else if (other.CompareTag("ObjectA") || other.CompareTag("ObjectB") || other.CompareTag("ObjectC"))
         {
@@ -74,7 +79,21 @@ public class TpToArrivalPoint : MonoBehaviour
     {
         if (!other.CompareTag("Player")) { return; }
 
-        other.transform.position = m_arrivalPoint.position;
+        TeleportPlayer(other);
+    }
+
+    private void TeleportPlayer(GameObject other)
+    {
+        switch (_isOtherPortalfacingTheSameDirection)
+        {
+            case true:
+                other.transform.position = m_arrivalPoint.position;
+                other.transform.Rotate(Vector3.up, 180f);
+                break;
+            case false:
+                other.transform.position = m_arrivalPoint.position;
+                break;
+        }
     }
 
     private void CheckIfKeyIsRight(GameObject other)
